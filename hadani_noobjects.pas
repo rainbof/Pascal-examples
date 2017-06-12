@@ -63,8 +63,43 @@ begin
   if cislo<typ then Writeln('Zadane cislo je vetsi');
   writeln(cislo);
  until typ = cislo;
- Writeln('ano bylo to cislo: ',cislo,'. Na uhadnuti bylo potreba ',pokus,' pokusu');
+ Writeln('Ano bylo to cislo: ',cislo,'. Na uhadnuti bylo potreba ',pokus,' pokusu');
 
+end;
+
+Procedure prodva;
+var
+   cislo1, typ1, pokus1 : longint;
+   cislo2, typ2, pokus2 : longint;
+   difficulty : longint;
+
+begin
+ randomize;
+ difficulty := obtiznost;
+ cislo1 := random(obtiznost);
+ cislo2 := random(obtiznost);
+
+ pokus1 := 0;
+ pokus2 := 0;
+
+ Writeln;
+ Writeln('Hadani cisel varianta pro dva hrace. Kazdy hada sve cislo.');
+ Writeln('Zadanim volby -1 hru vzdate.');
+ Writeln;
+
+ repeat
+  inc(pokus1);
+  write('Zadej svuj tip: ');
+  readln(typ1);
+  if cislo1>typ1 then Writeln('Zadane cislo je mensi');
+  if cislo1<typ1 then Writeln('Zadane cislo je vetsi');
+  writeln(cislo1,',',cislo2);
+ until typ = cislo;
+ Writeln('Ano bylo to cislo: ',cislo,'. Na uhadnuti bylo potreba ',pokus,' pokusu');
+
+end;
+
+begin
 end;
 
 var volba:Byte;
@@ -76,7 +111,4 @@ begin
    1: pro_jednoho;
   end;
  UNTIL Menu = 4; {4=exit}
-
-
-
 end.
