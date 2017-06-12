@@ -7,12 +7,12 @@ var
 begin
  Repeat
  volba:=0;
-  Writeln(' Hlavn¡ Nab¡dka');
+  Writeln(' Hlavni Nabidka');
   Writeln('----------------');
   Writeln;
-  Writeln('1. Hra pro jednoho hr Ÿe');
-  Writeln('2. Hra pro dva hr Ÿe');
-  Writeln('3. Hra proti poŸ¡taŸi');
+  Writeln('1. Hra pro jednoho hrace');
+  Writeln('2. Hra pro dva hrace');
+  Writeln('3. Hra proti pocitaci');
   Writeln('4. Konec');
   Writeln;
   Write('Volba:');
@@ -71,7 +71,7 @@ Procedure prodva;
 var
    cislo1, typ1, pokus1 : longint;
    cislo2, typ2, pokus2 : longint;
-   difficulty : longint;
+   difficulty, pokus : longint;
 
 begin
  randomize;
@@ -88,18 +88,40 @@ begin
  Writeln;
 
  repeat
-  inc(pokus1);
-  write('Zadej svuj tip: ');
-  readln(typ1);
-  if cislo1>typ1 then Writeln('Zadane cislo je mensi');
-  if cislo1<typ1 then Writeln('Zadane cislo je vetsi');
+  if typ1<>-1 then inc(pokus1);
+  if typ2<>-1 then inc(pokus2);
+
+  If (not (typ1=-1)) and (not (typ1=cislo1)) then
+  Begin
+    write('Hraci 1 zadej svuj tip: ');
+    readln(typ1);
+    if cislo1>typ1 then Writeln('Zadane cislo je mensi');
+    if cislo1<typ1 then Writeln('Zadane cislo je vetsi');
+    if cislo1 = typ1 then Writeln('Ano bylo to cislo: ',cislo1,'. Na uhadnuti bylo potreba ',pokus1,' pokusu');
+
+    if typ1=-1 then Begin
+                     Writeln('Hrac 1 vzdal svoji hru.');
+                     dec(pokus1)
+                    end;
+  end;
+
+  If (not (typ2=-1)) and (not (typ2=cislo2)) then
+  Begin
+    write('Hraci 2 zadej svuj tip: ');
+    readln(typ2);
+    if cislo2>typ2 then Writeln('Zadane cislo je mensi');
+    if cislo2<typ2 then Writeln('Zadane cislo je vetsi');
+    if cislo2 = typ2 then Writeln('Ano bylo to cislo: ',cislo2,'. Na uhadnuti bylo potreba ',pokus2,' pokusu');
+    if typ2=-1 then Begin
+                     Writeln('Hrac 2 vzdal svoji hru.');
+                     dec(pokus2)
+                    end;
+  end;
+
   writeln(cislo1,',',cislo2);
- until typ = cislo;
- Writeln('Ano bylo to cislo: ',cislo,'. Na uhadnuti bylo potreba ',pokus,' pokusu');
+ until ((typ1 = cislo1) or (typ1 = -1)) and ((typ2 = cislo2) or (typ2=-1));
 
-end;
 
-begin
 end;
 
 var volba:Byte;
@@ -109,6 +131,7 @@ begin
   Volba:=Menu;
   Case volba of
    1: pro_jednoho;
+   2: prodva;
   end;
  UNTIL Menu = 4; {4=exit}
 end.
