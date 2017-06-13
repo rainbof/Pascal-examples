@@ -59,7 +59,7 @@ begin
   inc(pokus);
   write('Zadej svuj tip: ');
   readln(typ);
-  if cislo>typ then Writeln(UTF8TOANSI('Zadane cislo je mensi'));
+  if cislo>typ then Writeln('Zadane cislo je mensi');
   if cislo<typ then Writeln('Zadane cislo je vetsi');
   writeln(cislo);
  until typ = cislo;
