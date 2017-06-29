@@ -1,6 +1,10 @@
 program hadani_cisel;
+uses
+    Crt;
 
-uses Crt;
+const {zapni toto pokud ladis vysledek}
+        cheat : boolean = true;
+
 Function Menu:Byte;
 var
         volba: Byte;
@@ -61,7 +65,7 @@ begin
   readln(typ);
   if cislo>typ then Writeln('Zadane cislo je mensi');
   if cislo<typ then Writeln('Zadane cislo je vetsi');
-  writeln(cislo);
+  if cheat then writeln(cislo);
  until typ = cislo;
  Writeln('Ano bylo to cislo: ',cislo,'. Na uhadnuti bylo potreba ',pokus,' pokusu');
 
@@ -118,7 +122,7 @@ begin
                     end;
   end;
 
-  writeln(cislo1,',',cislo2);
+  if cheat then writeln(cislo1,',',cislo2);
  until ((typ1 = cislo1) or (typ1 = -1)) and ((typ2 = cislo2) or (typ2=-1));
 
 
