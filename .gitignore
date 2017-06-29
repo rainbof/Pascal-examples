@@ -14,3 +14,5 @@
 fp.ini
 fp.cfg
 fp.dsk
+*.err
+*.out
